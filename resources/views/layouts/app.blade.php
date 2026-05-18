@@ -16,10 +16,12 @@
                 ✅ TaskManager
             </a>
             <div class="flex items-center gap-4">
+                <a href="{{ route('dashboard') }}"
+                class="text-sm text-gray-600 hover:text-indigo-600">Dashboard</a>
                 <a href="{{ route('tasks.index') }}"
-                   class="text-sm text-gray-600 hover:text-indigo-600">Tasks</a>
+                class="text-sm text-gray-600 hover:text-indigo-600">Tasks</a>
                 <a href="{{ route('categories.index') }}"
-                   class="text-sm text-gray-600 hover:text-indigo-600">Categories</a>
+                class="text-sm text-gray-600 hover:text-indigo-600">Categories</a>
                 <span class="text-sm text-gray-400">|</span>
                 <span class="text-sm text-gray-600">{{ auth()->user()->name }}</span>
                 <form method="POST" action="{{ route('logout') }}">

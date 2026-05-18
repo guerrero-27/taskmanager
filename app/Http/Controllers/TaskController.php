@@ -13,11 +13,22 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = auth()->user()->tasks()->with('category')->latest()->get();
+        $query = auth()->user()->tasks()->with('category')->latest();
 
-        $categories = auth()->user()->categories()->get();
+    // Filter by status
+    if (request('status')) {
+        $query->where('status', request('status'));
+    }
 
-        return view('tasks.index', compact('tasks', 'categories'));
+    // Filter by priority
+    if (request('priority')) {
+        $query->where('priority', request('priority'));
+    }
+
+    $tasks      = $query->get();
+    $categories = auth()->user()->categories()->get();
+
+    return view('tasks.index', compact('tasks', 'categories'));
     }
 
     /**
